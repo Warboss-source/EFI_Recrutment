@@ -26,5 +26,5 @@ docker run -d --rm -p 8000:8000 --name weatherapp_frontend -t weatherapp_fronten
 4. Optional: change location weather
 To do so you need to change backend default env parameter
 ```
-docker run -d --rm -p 9000:9000 -e APPID=$APPID -e TARGET_CITY="Helsinki,fi" --name weatherapp_backend -t weatherapp_backend
+docker run -d --rm -p 9000:9000 -e APPID=$APPID -e TARGET_CITY="Warsaw,pl" --name weatherapp_backend -t weatherapp_backend
 ```
