@@ -1,0 +1,24 @@
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: weatherapp_backend:local
+    ports:
+      - "9000:9000"
+    environment:
+      - APPID=${APPID}
+      - TARGET_CITY=${TARGET_CITY}
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: weatherapp_frontend:local
+    ports:
+      - "8000:8000"
+    environment:
+      - ENDPOINT=backend:9000
+    depends_on:
+      - backend
