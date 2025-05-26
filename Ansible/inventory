@@ -1,0 +1,14 @@
+#Remember to validate public address to keep public address is to pay money to Microsoft
+
+[all]
+server1-backend ansible_host=10.0.1.5 ansible_ssh_common_args='-o ProxyJump=warboss@20.215.245.10' ansible_user=warboss
+server2-frontend ansible_host=20.215.245.10 ansible_user=warboss
+
+[backend]
+server1-backend
+
+[frontend]
+server2-frontend
+
+[docker]
+server1-backend

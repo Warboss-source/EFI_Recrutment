@@ -1,0 +1,40 @@
+- name: Deployment of docker app weatherapp playbook
+  hosts: docker
+  become: true
+
+  tasks:
+    - name: Install docker
+      ansible.builtin.apt:
+        name:
+          - docker.io
+        state: latest
+
+    - name: Pull docker-compose
+      ansible.builtin.shell: |
+        sudo curl -L \
+        https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) \
+        -o /usr/bin/docker-compose && chmod +x /usr/bin/docker-compose
+
+    - name: Create application directory
+      ansible.builtin.file:
+        path: /opt/weatherapp
+        state: directory
+        mode: '0755'
+
+    - name: Push application code to remote host backend
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: /opt/weatherapp/
+        owner: warboss
+        group: warboss
+        mode: '0755'
+      loop:
+        - ../backend
+        - ../frontend
+        - ../docker-compose.yaml
+        - ../.env
+
+    - name: Docker compose up application
+      ansible.builtin.shell: |
+        cd /opt/weatherapp ; \
+        docker-compose up -d

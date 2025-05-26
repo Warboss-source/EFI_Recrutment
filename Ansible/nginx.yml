@@ -1,0 +1,31 @@
+- name: Nginx playbook
+  hosts: frontend
+  become: true
+
+  tasks:
+    - name: Update the repository cache and update/install package "nginx" to version 1.18.0
+      ansible.builtin.apt:
+        name: nginx=1.18.0-6ubuntu14.6
+        state: present
+        update_cache: true
+
+    - name: Deploy vhost for docker app
+      ansible.builtin.copy:
+        src: nginx/weather_app.vhost
+        dest: /etc/nginx/sites-available/weather_app.vhost
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Enable vhost by symlinking to sites-enabled
+      ansible.builtin.file:
+        src: /etc/nginx/sites-available/weather_app.vhost
+        dest: /etc/nginx/sites-enabled/weather_app.vhost
+        state: link
+        force: true
+
+    - name: Reload Nginx if config is valid
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded
+        enabled: true

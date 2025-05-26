@@ -18,7 +18,5 @@ services:
     image: weatherapp_frontend:local
     ports:
       - "8000:8000"
-    environment:
-      - ENDPOINT=backend:9000
     depends_on:
       - backend

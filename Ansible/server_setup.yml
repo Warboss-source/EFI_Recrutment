@@ -1,0 +1,25 @@
+- name: Server initialisation playbook
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Update apt cache, install or update basic tools
+      ansible.builtin.apt:
+        pkg:
+          - net-tools
+          - curl
+          - vim
+          - git
+          - python-is-python3
+          - python3-apt
+          - aptitude
+          - python3-pip
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Set authorized key taken from file
+      ansible.posix.authorized_key:
+        user: warboss
+        state: present
+        key: "{{ lookup('file', '../id_rsa_internship.pub') }}"
