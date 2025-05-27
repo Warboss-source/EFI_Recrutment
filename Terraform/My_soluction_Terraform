@@ -9,7 +9,7 @@ Configuration of the environemnt - physical part. Resources deployed to Azure. O
 |:---:|:---:|:---:|:-----|
 |backend-vm|Virtual machine|Poland Central|Private IP: 10.0.1.5<br/>Public IP: -|
 |backend-vm-osdisk|Disk|Poland Central|-|
-|frontend-vm|Virtual machine|Poland Central|Private IP: 10.0.1.4<br/>Public IP: assigned new each time we enable vm as it cost to assign to public IP |
+|frontend-vm|Virtual machine|Poland Central|Private IP: 10.0.1.4<br/>Public IP: -|
 |frontend-vm-osdisk|Disk|Poland Central|-|
 |nic-vm1|Network Interface|Poland Central|-|
 |nic-vm2|Network Interface|Poland Central|-|
