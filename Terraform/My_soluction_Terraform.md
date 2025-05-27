@@ -7,10 +7,10 @@ Configuration of the environemnt - physical part. Resources deployed to Azure. O
 
 |Name|Type|Location|Details|
 |:---:|:---:|:---:|:-----|
-|backend-vm|Virtual machine|Poland Central|Private IP: 10.0.1.5<br/>Public IP: -|
-|backend-vm-osdisk|Disk|Poland Central|-|
-|frontend-vm|Virtual machine|Poland Central|Private IP: 10.0.1.4<br/>Public IP: -|
-|frontend-vm-osdisk|Disk|Poland Central|-|
+|Backend|Virtual machine|Poland Central|Private IP: 10.0.1.5<br/>Public IP: -|
+|Backend-osdisk|Disk|Poland Central|-|
+|Frontend|Virtual machine|Poland Central|Private IP: 10.0.1.4<br/>Public IP: assigned when runed no static IP|
+|Frontend-osdisk|Disk|Poland Central|-|
 |nic-vm1|Network Interface|Poland Central|-|
 |nic-vm2|Network Interface|Poland Central|-|
 |public-ip|Public IP address|Poland Central|-|
@@ -68,7 +68,7 @@ The most important file in our case - definitions of virtual machines and their 
 - assigning network interfaces
 - setting admin ssh key from variable
 - configuration of os disk 
-- OS image (Ubuntu 22.04)
+- OS image - (Ubuntu 22.04)
 
 # Deployment of terraform:
 ```bash
